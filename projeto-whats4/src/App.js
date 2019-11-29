@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import CampoDeEntrada from './Components/CampoDeEntrada/CampoDeEntrada';
 
 
+const Maindiv = styled.div`
+background-color:#00E676
+
+`
 
 
 class App extends React.Component{
@@ -15,19 +19,20 @@ class App extends React.Component{
 
   }
   
+
   render(){
     return(
-      <div> 
+      <Maindiv>
         <div>
           <CampoDeEntrada
-            mensagem="Usúario"
+            borda="1px dotted black"
             
           
           ></CampoDeEntrada>
         
 
         </div>
-      </div>
+      </Maindiv>
     )
   }
 

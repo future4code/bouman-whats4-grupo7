@@ -1,16 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Mensagens from '../Mensagens/Mensagens';
+
 
 const CustomInput = styled.input`
-    width:${props => props.largura};
+    
 
 `
 const CustomButton = styled.button`
-    width:${props => props.largura};
+    background-color:#0D6652;
+	border:solid #0D6652;
+	cursor:pointer;
+    color:#ffffff;
+	font-family:Arial;
+    text-decoration:none;
+    width:auto
+}
+    
 `
 const CustomDiv = styled.div`
-    border: 1px solid black;
+    border:${props => props.borda};
     min-height:100vh
     width: 50%;
     margin: auto;
@@ -18,11 +28,14 @@ const CustomDiv = styled.div`
     flex-direction:column;
     justify-content: flex-end;
     box-sizing: border-box;
-`
+    background-image: url("https://i.pinimg.com/originals/34/8f/c9/348fc9806e32bba0fb4c42e799ddf880.jpg");
+    background-size: 100%;
+    `
 
-const CustomFieldset = styled.section`
-    grid-template-columns: 15% 75% 10%;
+const CustomSection = styled.section`
+    grid-template-columns: 15% 75% 10.1%;
     display:grid;
+    
 
 `
 
@@ -32,15 +45,8 @@ class CampoDeEntrada extends React.Component{
         this.state = {
             valorUsuario: '',
             valorMensagem:'',
-            mensagensEnviadas: [
-
-            ],
-            
-            
-        
-
+            mensagensEnviadas: [],
         }
- 
     }
 
 
@@ -60,30 +66,31 @@ class CampoDeEntrada extends React.Component{
     }
 
     enviar = () => {
-        let copy = [...this.state.mensagensEnviadas, <div> <span><strong>
-            {this.state.valorUsuario}</strong></span>:   <span>{this.state.valorMensagem}</span></div>]
+        let copy = [...this.state.mensagensEnviadas, <Mensagens funcao={this.apagar} key={this.state.mensagensEnviadas.length} user={this.state.valorUsuario} mensagemMandada={this.state.valorMensagem}/>]
         this.setState({
             mensagensEnviadas:copy
         })
+
     }
 
 
+  enviarComEnter = (event) => {
+    if (event.key === "Enter"){
+        this.enviar();}
+    }
 
-
-
-
-
-
-
-
+  apagar = (event) => {
+    event.target.innerHTML = "";
+ 
+    }
 
 
 
     render(){
         return(
-            <CustomDiv>
+            <CustomDiv onKeyDown={this.enviarComEnter} borda="2px solid #0D6652">
                 {this.state.mensagensEnviadas}
-                <CustomFieldset>
+                <CustomSection>
                     <CustomInput 
                         type='text'
                         value={this.state.valorUsuario}
@@ -107,12 +114,16 @@ class CampoDeEntrada extends React.Component{
                     >
                         Enviar
                     </CustomButton>
-                </CustomFieldset>
+                </CustomSection>
             </CustomDiv>
         )
     }
 
+    
+
 }
+    
+
 
 export default CampoDeEntrada;
 
