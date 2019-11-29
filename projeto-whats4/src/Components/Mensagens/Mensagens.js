@@ -14,7 +14,7 @@ function Mensagens(props){
             </span>
             <br/>
             
-            {" [APAGAR]"}
+            {" [APAGAR]"}   /*Nao conseguimos fazer o botao apagar a div inteira*/
         </div>
     )
 }
