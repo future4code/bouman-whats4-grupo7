@@ -6,7 +6,6 @@ import Mensagens from '../Mensagens/Mensagens';
 
 const CustomInput = styled.input`
     
-
 `
 const CustomButton = styled.button`
     background-color:#0D6652;
@@ -49,7 +48,7 @@ class CampoDeEntrada extends React.Component{
         }
     }
 
-
+   
 
 
     atualizarUsuario = (event) => {
@@ -78,16 +77,18 @@ class CampoDeEntrada extends React.Component{
     if (event.key === "Enter"){
         this.enviar();}
     }
-
-  apagar = (event) => {
-    event.target.innerHTML = "";
- 
-    }
+    
+    
+    apagar = (event) => {
+        if(window.confirm("Quer apagar?")){
+            event.target.innerHTML = "";}
+        }
 
 
 
     render(){
         return(
+            
             <CustomDiv onKeyDown={this.enviarComEnter} borda="2px solid #0D6652">
                 {this.state.mensagensEnviadas}
                 <CustomSection>
@@ -97,17 +98,13 @@ class CampoDeEntrada extends React.Component{
                         onChange={this.atualizarUsuario}
                         placeholder="Usúario"
 
-
-
                     ></CustomInput>
                     <CustomInput
                         type='text'
                         value={this.state.valorMensagem}
                         onChange={this.atualizarMensagem}
                         placeholder="Mensagem"
-
                     >
-
                     </CustomInput>
                     <CustomButton
                         onClick={this.enviar}
@@ -118,9 +115,6 @@ class CampoDeEntrada extends React.Component{
             </CustomDiv>
         )
     }
-
-    
-
 }
     
 

@@ -1,30 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-
-
-const BotaoDeletar = styled.button`
-    background-color:red;
-    color:white;
-    
-
-`
-
-
-
+import PropTypes from 'prop-types';
 
 function Mensagens(props){
 
-    
     return(
         <div onDoubleClick={props.funcao}>
+            <strong>
             <span>
                 {props.user}
-            </span>: <span>
+            </span> </strong>: <span>
                 {props.mensagemMandada}
             </span>
-           {" APAGAR"}
+            <br/>
+            
+            {" [APAGAR]"}
         </div>
     )
 }
+    Mensagens.propTypes = {
+        funcao: PropTypes.func,
+        user: PropTypes.string,
+        mensagemMandada: PropTypes.string,
+    }
 
 export default Mensagens;
