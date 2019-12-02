@@ -57,7 +57,6 @@ class CampoDeEntrada extends React.Component{
         })
 
     }
-
     atualizarMensagem = (event) => {
         this.setState({
             valorMensagem:event.target.value
